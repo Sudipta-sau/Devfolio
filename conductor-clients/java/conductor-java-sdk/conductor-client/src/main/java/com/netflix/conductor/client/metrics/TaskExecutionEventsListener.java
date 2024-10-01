@@ -12,6 +12,16 @@
  */
 package com.netflix.conductor.client.metrics;
 
-public interface MetricsCollector extends PollEventsListener, TaskExecutionEventsListener {
+import com.netflix.conductor.client.automator.events.TaskExecutionCompleted;
+import com.netflix.conductor.client.automator.events.TaskExecutionFailure;
+import com.netflix.conductor.client.automator.events.TaskExecutionStarted;
+
+public interface TaskExecutionEventsListener {
+
+    void consume(TaskExecutionStarted e);
+
+    void consume(TaskExecutionCompleted e);
+
+    void consume(TaskExecutionFailure e);
 
 }
